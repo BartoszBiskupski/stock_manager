@@ -41,5 +41,16 @@ class User(db.Model):
         return False
 
     def get_id(self):
-        return unicode(self.id)
+        return str(self.id)
+
+class Product(db.Model):
+    """
+    Products in our app
+    """
+    __tablename__ = 'products'
+    product_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    product_name = db.Column(db.String(100))
+    product_catalog = db.Column(db.String(100))
+    product_description = db.Column(db.String(500))
+    product_price = db.Column(db.String(100))
 

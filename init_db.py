@@ -2,7 +2,7 @@ __author__ = 'Jacek Kalbarczyk'
 
 from sqlalchemy import create_engine
 from main import db
-from models import User
+from models import User, Product
 from werkzeug.security import generate_password_hash
 
 def db_start():
@@ -17,7 +17,8 @@ def db_start():
     user.admin = True
     user.poweruser = True
     db.session.add(user)
-    db.session.commit()
+
+
 
 if __name__ == '__main__':
     db_start()

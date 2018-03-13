@@ -11,6 +11,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 baseTemplate = 'index.html'
 loginTemplate = 'login.html'
 signupTemplate = 'signup.html'
+productsTemplate = 'products.html'
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -28,6 +29,11 @@ def navitem1():
 @app.route('/navitem2', methods=['GET'])
 def navitem2():
     return redirect(url_for('index'))
+
+@app.route('/products', methods=['GET','POST'])
+def products():
+    return render_template(productsTemplate)
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
