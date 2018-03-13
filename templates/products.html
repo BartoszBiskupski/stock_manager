@@ -3,7 +3,54 @@
 {% block title %}Products{%endblock%}
 
 {% block content %}
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Stock')" id="defaultOpen">Stock</button>
+  <button class="tablinks" onclick="openCity(event, 'Search')">Search</button>
+  <button class="tablinks" onclick="openCity(event, 'AddNew')">Add New</button>
+  <button class="tablinks" onclick="openCity(event, 'Remove')">Remove</button>
+  <button class="tablinks" onclick="openCity(event, 'GoodsIn')">Goods In</button>
+</div>
 
-    <p>Some test text</p>
+<div id="Stock" class="tabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Search" class="tabcontent">
+  <h3>Search</h3>
+  <p>Paris is the capital of France.</p>
+</div>
+
+<div id="AddNew" class="tabcontent">
+  <h3>Add New</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+<div id="Remove" class="tabcontent">
+  <h3>Remove</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+<div id="GoodsIn" class="tabcontent">
+  <h3>GoodsIn</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+<script>
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
 
 {% endblock %}
