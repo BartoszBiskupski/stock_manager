@@ -18,7 +18,25 @@ def db_start():
     user.poweruser = True
     db.session.add(user)
 
-
+#dodanie przykładowych produktów i klientów
+product1 = Product(
+    name='Car tire A',
+    group='Tires',
+    quantity=1,
+    price=50
+)
+product2 = Product(
+    name='Car tire B',
+    group='Tires',
+    quantity=3,
+    price=60
+)
+product3 = Product(
+    name='Car piston A',
+    group='Pistons',
+    quantity=1,
+    price=150
+)
 
 if __name__ == '__main__':
     db_start()

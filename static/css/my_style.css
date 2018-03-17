@@ -22,7 +22,7 @@ font-size: large;
     float: left;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
-    width: 30%;
+    width: 15%;
     height: 300px;
 }
 /* Style the buttons inside the tab */
@@ -55,7 +55,21 @@ font-size: large;
     float: left;
     padding: 0px 12px;
     border: 1px solid #ccc;
-    width: 70%;
+    width: 85%;
     border-left: none;
-    height: 300px;
+    height: 600px;
+}
+
+.search-container button {
+  float: center;
+  padding: 6px 10px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.search-container {
+  float: center;
 }
