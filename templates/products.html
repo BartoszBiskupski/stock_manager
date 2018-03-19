@@ -4,8 +4,8 @@
 
 {% block content %}
 <div class="tab">
-  <button class="tablinks" onclick="ProductsBar(event, 'Search')" id="defaultOpen">Search</button>
-  <button class="tablinks" onclick="ProductsBar(event, 'Stock')">Show all</button>
+  <button class="tablinks" onclick="ProductsBar(event, 'Search')" id="defaultOpen"><a class="nav-link {% if page_id == 'products' %} active {% endif %}" href="{{url_for('search')}}">Search</a></button>
+  <button class="tablinks" onclick="ProductsBar(event, 'Stock')"><a class="nav-link {% if page_id == 'products' %} active {% endif %}" href="{{url_for('stock')}}">Show all</a></button>
   <button class="tablinks" onclick="ProductsBar(event, 'AddNew')">Add New</button>
   <button class="tablinks" onclick="ProductsBar(event, 'Remove')">Remove</button>
   <button class="tablinks" onclick="ProductsBar(event, 'GoodsIn')">Goods In</button>
@@ -23,12 +23,26 @@
 
 <div id="Stock" class="tabcontent">
   <h3>Stock in stock</h3>
-  <ol type="1" >
-    {% for product in products %}
-        <li>
-            {{ product }}
-        </li>
-    {% endfor %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="stockcol">#</th>
+          <th scope="stockcol">Name</th>
+          <th scope="stockcol">Group</th>
+          <th scope="stockcol">Quantity</th>
+          <th scope="stockcol">Price</th>
+        </tr>
+        {% for product in products %}
+          <tr>
+            <th scope="stockcol">{{product.id}}</th>
+            <th scope="stockcol">{{product.name}}</th>
+            <th scope="stockcol">{{product.group}}</th>
+            <th scope="stockcol">{{product.quantity}}</th>
+            <th scope="stockcol">{{product.price}}</th>
+        {% endfor %}
+        </tr>
+      </thead>
+     </table>
   </ol>
 </div>
 

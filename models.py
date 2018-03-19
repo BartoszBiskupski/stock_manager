@@ -55,12 +55,12 @@ class Product(db.Model):
     # product_price = db.Column(db.String(100))
 
     __tablename__ = 'products'
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer,autoincrement=True, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     group = db.Column(db.String(30), nullable=False)
     quantity = db.Column(db.Integer, default=0)
     price = db.Column(db.Integer, default=0)
 
-    def __repr__(self):
-        return "Products(id={}, name='{}', group='{}', quantity='{}', price='{}'".format(self.id, self.name, self.group,
-                                                                                         self.quantity, self.price)
+    # def __repr__(self):
+    #     return "Products(id={}, name='{}', group='{}', quantity='{}', price='{}'".format(self.id, self.name, self.group,
+    #                                                                                      self.quantity, self.price)
