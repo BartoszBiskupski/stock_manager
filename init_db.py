@@ -38,8 +38,11 @@ product3 = Product(
     price=150
 )
 
-products = Product.query.order_by(Product.id)
-for product in products:
-    print(product.id, product.name)
+db.session.add(product1)
+db.session.add(product2)
+db.session.add(product3)
+
+db.session.commit()
+
 if __name__ == '__main__':
     db_start()
