@@ -3,26 +3,31 @@
 {% block title %}Products{%endblock%}
 
 {% block content %}
-<div class="tab">
-  <button class="tablinks" onclick="ProductsBar(event, 'Search')" id="defaultOpen"><a class="nav-link {% if page_id == 'products' %} active {% endif %}" href="{{url_for('search')}}">Search</a></button>
-  <button class="tablinks" onclick="ProductsBar(event, 'Stock')"><a class="nav-link {% if page_id == 'products' %} active {% endif %}" href="{{url_for('stock')}}">Show all</a></button>
-  <button class="tablinks" onclick="ProductsBar(event, 'AddNew')">Add New</button>
-  <button class="tablinks" onclick="ProductsBar(event, 'Remove')">Remove</button>
-  <button class="tablinks" onclick="ProductsBar(event, 'GoodsIn')">Goods In</button>
-</div>
+<div id="Stock" class="searchdiv">
+      <div class="searchbox">
+        <form action="/stock" method="get">
+          <input type="text" name="query" placeholder="Search">
+          <input type="submit" value="Search">
+            {% if query %}
+              <th scope="stockcol">#</th>
+              <th scope="stockcol">Name</th>
+              <th scope="stockcol">Group</th>
+              <th scope="stockcol">Quantity</th>
+              <th scope="stockcol">Price</th>
+                {% for product in products %}
+                  <tr>
+                    <th scope="stockcol">{{product.id}}</th>
+                    <th scope="stockcol">{{product.name}}</th>
+                    <th scope="stockcol">{{product.group}}</th>
+                    <th scope="stockcol">{{product.quantity}}</th>
+                    <th scope="stockcol">{{product.price}}</th>
+                {% endfor %}
+            {% endif %}
+        </form>
+       </div>
 
-<div id="Search" class="tabcontent">
-  <h3>Search</h3>
-  <div class="search-container">
-    <form action="/action_page.php">
-      <input type="text" placeholder="Search.." name="search">
-      <button type="submit"><i class="fa fa-search"></i></button>
-    </form>
-  </div>
-</div>
 
-<div id="Stock" class="tabcontent">
-  <h3>Stock in stock</h3>
+
     <table class="table">
       <thead>
         <tr>
@@ -42,40 +47,8 @@
         {% endfor %}
         </tr>
       </thead>
-     </table>
-  </ol>
-</div>
+    </table>
 
-<div id="AddNew" class="tabcontent">
-  <h3>Add New</h3>
-  <p></p>
 </div>
-<div id="Remove" class="tabcontent">
-  <h3>Remove</h3>
-  <p>Tokyo is the capital of Japan.</p>
-</div>
-<div id="GoodsIn" class="tabcontent">
-  <h3>GoodsIn</h3>
-  <p>Tokyo is the capital of Japan.</p>
-</div>
-
-<script>
-function ProductsBar(evt, ProductsBarOption) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(ProductsBarOption).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-</script>
 
 {% endblock %}

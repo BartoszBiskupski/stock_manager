@@ -18,6 +18,7 @@ def products():
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
+
     return render_template(productsTemplate)
 
 @app.route('/stock', methods=['GET'])
