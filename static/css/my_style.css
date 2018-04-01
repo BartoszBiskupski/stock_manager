@@ -26,8 +26,9 @@ font-size: large;
 .searchbox {
     padding-bottom: 20px;
     position: relative;
-    border: 2px solid black
-
+    border: 2px solid black;
+    display: flex;
+    align-content: center;
 
 
 }

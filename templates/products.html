@@ -8,21 +8,6 @@
         <form action="/stock" method="get">
           <input type="text" name="query" placeholder="Search">
           <input type="submit" value="Search">
-            {% if query %}
-              <th scope="stockcol">#</th>
-              <th scope="stockcol">Name</th>
-              <th scope="stockcol">Group</th>
-              <th scope="stockcol">Quantity</th>
-              <th scope="stockcol">Price</th>
-                {% for product in products %}
-                  <tr>
-                    <th scope="stockcol">{{product.id}}</th>
-                    <th scope="stockcol">{{product.name}}</th>
-                    <th scope="stockcol">{{product.group}}</th>
-                    <th scope="stockcol">{{product.quantity}}</th>
-                    <th scope="stockcol">{{product.price}}</th>
-                {% endfor %}
-            {% endif %}
         </form>
        </div>
 
@@ -37,14 +22,25 @@
           <th scope="stockcol">Quantity</th>
           <th scope="stockcol">Price</th>
         </tr>
-        {% for product in products %}
-          <tr>
-            <th scope="stockcol">{{product.id}}</th>
-            <th scope="stockcol">{{product.name}}</th>
-            <th scope="stockcol">{{product.group}}</th>
-            <th scope="stockcol">{{product.quantity}}</th>
-            <th scope="stockcol">{{product.price}}</th>
-        {% endfor %}
+        {% if query %}
+          {% for product in products %}
+            <tr>
+              <th scope="stockcol">{{query.id}}</th>
+              <th scope="stockcol">{{query.name}}</th>
+              <th scope="stockcol">{{query.group}}</th>
+              <th scope="stockcol">{{query.quantity}}</th>
+              <th scope="stockcol">{{query.price}}</th>
+          {% endfor %}
+        {% else %}
+          {% for product in products %}
+            <tr>
+              <th scope="stockcol">{{product.id}}</th>
+              <th scope="stockcol">{{product.name}}</th>
+              <th scope="stockcol">{{product.group}}</th>
+              <th scope="stockcol">{{product.quantity}}</th>
+              <th scope="stockcol">{{product.price}}</th>
+          {% endfor %}
+        {% endif %}
         </tr>
       </thead>
     </table>
