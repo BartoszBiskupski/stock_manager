@@ -10,9 +10,6 @@
           <input type="submit" value="Search">
         </form>
        </div>
-
-
-
     <table class="table">
       <thead>
         <tr>
@@ -22,14 +19,14 @@
           <th scope="stockcol">Quantity</th>
           <th scope="stockcol">Price</th>
         </tr>
-        {% if query %}
-          {% for product in products %}
+        {% if searched_products %}
+          {% for product in searched_products %}
             <tr>
-              <th scope="stockcol">{{query.id}}</th>
-              <th scope="stockcol">{{query.name}}</th>
-              <th scope="stockcol">{{query.group}}</th>
-              <th scope="stockcol">{{query.quantity}}</th>
-              <th scope="stockcol">{{query.price}}</th>
+              <th scope="stockcol">{{product.id}}</th>
+              <th scope="stockcol">{{product.name}}</th>
+              <th scope="stockcol">{{product.group}}</th>
+              <th scope="stockcol">{{product.quantity}}</th>
+              <th scope="stockcol">{{product.price}}</th>
           {% endfor %}
         {% else %}
           {% for product in products %}
