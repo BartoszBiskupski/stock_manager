@@ -5,33 +5,34 @@
 {% block content %}
 <div id="Stock" class="searchdiv">
       <div class="searchbox">
-        <div class="checkboxdiv">
           <form action="/stock" method="get">
-            <label class="checkbox"> All
-              <input type="checkbox" checked="checked" name="searchrange" value="all">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkbox"> ID
-              <input type="checkbox" name="searchrange" value="id">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkbox"> Name
-              <input type="checkbox" name="searchrange" value="name">
-              <span class="checkmark"></span>
-            </label>
-            <label class="checkbox"> Group
-              <input type="checkbox" name="searchrange" value="group">
-              <span class="checkmark"></span>
-            </label>
+            <div class="checkboxdiv">
+
+                <label class="checkbox"> All
+                  <input type="radio" checked="checked" name="searchrange" value="all">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox"> ID
+                  <input type="radio" name="searchrange" value="id">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox"> Name
+                  <input type="radio" name="searchrange" value="name">
+                  <span class="checkmark"></span>
+                </label>
+                <label class="checkbox"> Group
+                  <input type="radio" name="searchrange" value="group">
+                  <span class="checkmark"></span>
+                </label>
+
+            </div>
+            <div class="searchinput">
+                <input type="text" name="query" placeholder="Search">
+                <input type="submit" value="Search">
+            </div>
           </form>
-        </div>
-        <div class="searchinput">
-          <form action="/stock" method="get">
-            <input type="text" name="query" placeholder="Search">
-            <input type="submit" value="Search">
-          </form>
-        </div>
-       </div>
+      </div>
+</div>
     <table class="table">
       <thead>
         <tr>
