@@ -20,18 +20,28 @@ font-size: large;
 
 .searchdiv {
     padding: 50px;
+    display: block;
 
 }
 
 .searchbox {
-    padding-bottom: 20px;
+    padding: 5px 20px 20px;
     position: relative;
     border: 2px solid black;
-    display: flex;
     align-content: center;
-
+    display: inline-grid;
 
 }
+.checkboxdiv {
+    padding: 5px;
+    display: inline-block;
+
+}
+.searchinput {
+    padding: 5px
+}
+
+
 .dropbtn {
     color: WhiteSmoke;
     background: #343a40;

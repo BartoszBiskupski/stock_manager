@@ -25,13 +25,27 @@ def products():
 def stock():
     searched_products = []
     query = request.args.get('query')
-    if query:
+    search_range = request.form.get('searchrange')
+
+    if True:
         products = Product.query.order_by(Product.id)
-        for product in products:
-            if query in product.name:
-                searched_products.append(product)
-    else:
-        products = Product.query.order_by(Product.id)
+        if search_range == "All":
+            for product in products:
+                if query in product.name:
+                    searched_products.append(product)
+        elif search_range == "Name":
+            for product in products:
+                if query in product.name:
+                    searched_products.append(product)
+        elif search_range == "ID":
+            for product in products:
+                if query == product.id:
+                    searched_products.append(product)
+        elif search_range == "Group":
+            for product in products:
+                if query in product.group:
+                    searched_products.append(product)
+
 
     return render_template(productsTemplate, products=products, searched_products=searched_products)
 
