@@ -31,7 +31,7 @@ def stock():
         products = Product.query.order_by(Product.id)
         if search_range == "all":
             for product in products:
-                if query in product.name:
+                if query in product.name or query == str(product.id) or query in product.group:
                     searched_products.append(product)
         elif search_range == "name":
             for product in products:
@@ -45,6 +45,7 @@ def stock():
             for product in products:
                 if query in product.group:
                     searched_products.append(product)
+
 
 
     return render_template(productsTemplate, products=products, searched_products=searched_products)
