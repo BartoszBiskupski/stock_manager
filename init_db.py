@@ -1,24 +1,48 @@
-__author__ = 'Piotr Dyba'
+__author__ = 'Jacek Kalbarczyk'
 
 from sqlalchemy import create_engine
-from app import db, bcrypt
-import models
-
+from main import db
+from models import User, Product
+from werkzeug.security import generate_password_hash
 
 def db_start():
-    create_engine('sqlite:///tmp/test.db', convert_unicode=True)
+    create_engine('sqlite:///test.db', convert_unicode=True)
     db.create_all()
     db.session.commit()
-    user = models.User()
-    user.username = "piotr"
-    user.password = bcrypt.generate_password_hash('pppp1234')
-    user.email = 'piotr@dyba.com.pl'
+
+    user = User()
+    user.username = "admin"
+    user.password = generate_password_hash('admin', method='sha256')
+    user.email = 'admin@gmail.com'
     user.admin = True
     user.poweruser = True
     db.session.add(user)
-    db.session.commit()
 
+#dodanie przykładowych produktów i klientów
+product1 = Product(
+    name='Car tire A',
+    group='Tires',
+    quantity=1,
+    price=50
+)
+product2 = Product(
+    name='Car tire B',
+    group='Tires',
+    quantity=3,
+    price=60
+)
+product3 = Product(
+    name='Car piston A',
+    group='Pistons',
+    quantity=1,
+    price=150
+)
 
+db.session.add(product1)
+db.session.add(product2)
+db.session.add(product3)
+
+db.session.commit()
 
 if __name__ == '__main__':
     db_start()
