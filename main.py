@@ -5,6 +5,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+from config import DEBUG, HOST, PORT, DATABASE_URI
 
 
 app = Flask(__name__)
