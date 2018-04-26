@@ -4,9 +4,10 @@ from sqlalchemy import create_engine
 from main import db
 from models import User, Product
 from werkzeug.security import generate_password_hash
+from config import DATABASE_URI
 
 def db_start():
-    create_engine('sqlite:///test.db', convert_unicode=True)
+    create_engine(DATABASE_URI)
     db.create_all()
     db.session.commit()
 
