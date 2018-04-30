@@ -1,23 +1,20 @@
 __author__ = 'Jacek Kalbarczyk'
 
-from sqlalchemy import create_engine
-from main import db
+from main import app
 from models import User, Product
 from werkzeug.security import generate_password_hash
 
-def db_start():
-    create_engine('sqlite:///test.db', convert_unicode=True)
-    db.create_all()
-    db.session.commit()
+app.app_context().push()
 
-    user = User()
-    user.username = "admin"
-    user.password = generate_password_hash('admin', method='sha256')
-    user.email = 'admin@gmail.com'
-    user.admin = True
-    user.poweruser = True
-    db.session.add(user)
+db.create_all()
 
+admin = User(
+    username = "admin"
+    password = generate_password_hash('admin', method='sha256')
+    email = 'admin@gmail.com'
+    admin = True
+    poweruser = True
+)
 #dodanie przykładowych produktów i klientów
 product1 = Product(
     name='Car tire A',
@@ -41,8 +38,8 @@ product3 = Product(
 db.session.add(product1)
 db.session.add(product2)
 db.session.add(product3)
+db.session.add(admin)
 
 db.session.commit()
 
-if __name__ == '__main__':
-    db_start()
+print('DB set up successfully!')

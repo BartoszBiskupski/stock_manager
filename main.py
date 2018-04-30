@@ -5,17 +5,16 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-
+from config import DEBUG, HOST, PORT, DATABASE_URI
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'DirtySecret'
 
 Bootstrap(app)
 
 #sess = session()
-db = SQLAlchemy(app)
 #db.app = app
 #db.init_app(app)
 login_manager = LoginManager()
@@ -27,6 +26,4 @@ app.static_path = path.join(path.abspath(__file__), 'static')
 
 
 if __name__ == '__main__':
-    from views import *
-    from views_products import *
-    app.run(debug=True)
+    app.run(HOST, PORT, debug=DEBUG)
