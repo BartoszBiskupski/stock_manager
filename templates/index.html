@@ -20,18 +20,18 @@
   </div>
   <nav class="navbar navbar-expand-md sticky-top navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{{url_for('index')}}">#</a>
+      <a class="navbar-brand" href="{{url_for('stock_manager.index')}}">#</a>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link {% if page_id == 'navitem1' %} active {% endif %}" href="{{url_for('navitem1')}}">Nav Item 1</a>
+          <a class="nav-link {% if page_id == 'navitem1' %} active {% endif %}" href="{{url_for('stock_manager.navitem1')}}">Nav Item 1</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if page_id == 'navitem2' %} active {% endif %}" href="{{url_for('navitem2')}}">Nav Item 2</a>
+          <a class="nav-link {% if page_id == 'navitem2' %} active {% endif %}" href="{{url_for('stock_manager.navitem2')}}">Nav Item 2</a>
         </li>
         <li class="nav-item dropdown">
           <button class="dropbtn">Products</button>
             <div class="dropdown-content">
-              <a class="nav-link {% if page_id == 'products' %} active {% endif %}" href="{{url_for('stock')}}">Stock</a>
+              <a class="nav-link {% if page_id == 'products' %} active {% endif %}" href="{{url_for('stock_view.stock')}}">Stock</a>
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
             </div>
@@ -45,15 +45,15 @@
             <span class="caret"></span>
           </a>
           <div class="dropdown-menu" aria-labelledby="dropdown_logout">
-              <a class="dropdown-item" href="{{url_for('logout')}}">Logout</a>
+              <a class="dropdown-item" href="{{url_for('stock_manager.logout')}}">Logout</a>
           </div>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link {% if page_id == 'signup' %} active {% endif %}" href="{{url_for('signup')}}">Signup</a>
+          <a class="nav-link {% if page_id == 'signup' %} active {% endif %}" href="{{url_for('stock_manager.signup')}}">Signup</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if page_id == 'login' %} active {% endif %}" href="{{url_for('login')}}">Login</a>
+          <a class="nav-link {% if page_id == 'login' %} active {% endif %}" href="{{url_for('stock_manager.login')}}">Login</a>
         </li>
         {% endif %}
       </ul>

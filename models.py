@@ -7,7 +7,9 @@ __author__ = 'Jacek Kalbarczyk'
 #from sqlalchemy.types import String
 #from sqlalchemy.types import Boolean
 
-from main import db
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 
 class User(db.Model):

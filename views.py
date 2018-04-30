@@ -1,37 +1,42 @@
 from sqlite3 import IntegrityError
 
-from flask import render_template, redirect, url_for
+from flask import render_template, redirect, url_for, Blueprint
 from flask_login import login_user, login_required, logout_user, current_user
-from main import app, login_manager, db
 from forms import LoginForm, SignupForm
-from models import User, Product
+from models import User, db
 from sqlalchemy.exc import IntegrityError
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import asc
+# from sqlalchemy import asc
+from flask_login import LoginManager
 
 baseTemplate = 'index.html'
 loginTemplate = 'login.html'
 signupTemplate = 'signup.html'
+
+stock_manager = Blueprint("stock_manager", __name__)
+
+login_manager = LoginManager()
+
 
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@app.route('/', methods=['GET'])
+@stock_manager.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template(baseTemplate)
 
-@app.route('/navitem1', methods=['GET'])
+@stock_manager.route('/navitem1', methods=['GET'])
 @login_required
 def navitem1():
-    return None
+    return render_template(baseTemplate)
 
-@app.route('/navitem2', methods=['GET'])
+@stock_manager.route('/navitem2', methods=['GET'])
 def navitem2():
-    return redirect(url_for('index'))
+    return redirect(url_for('stock_manager.index'))
 
-@app.route('/login', methods=['GET', 'POST'])
+@stock_manager.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -46,7 +51,7 @@ def login():
 
     return render_template(loginTemplate, form=form)
 
-@app.route('/signup', methods=['GET', 'POST'])
+@stock_manager.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
@@ -61,7 +66,7 @@ def signup():
 
     return render_template(signupTemplate, form=form)
 
-@app.route('/logout')
+@stock_manager.route('/logout')
 @login_required
 def logout():
     logout_user()

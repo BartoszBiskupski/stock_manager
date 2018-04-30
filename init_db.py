@@ -1,19 +1,23 @@
 __author__ = 'Jacek Kalbarczyk'
 
-from main import app
+from main import app, db
 from models import User, Product
 from werkzeug.security import generate_password_hash
+
+
+
 
 app.app_context().push()
 
 db.create_all()
 
 admin = User(
-    username = "admin"
-    password = generate_password_hash('admin', method='sha256')
-    email = 'admin@gmail.com'
-    admin = True
-    poweruser = True
+    active=True,
+    username="admin",
+    password=generate_password_hash('admin', method='sha256'),
+    email='admin@gmail.com',
+    admin=True,
+    # poweruser=True,
 )
 #dodanie przykładowych produktów i klientów
 product1 = Product(

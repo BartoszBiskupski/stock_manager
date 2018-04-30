@@ -1,18 +1,22 @@
 from sqlite3 import IntegrityError
 
-from flask import render_template, redirect, url_for, request
-from flask_login import login_user, login_required, logout_user, current_user
-from main import app, login_manager, db
-from forms import LoginForm, SignupForm
-from models import User, Product
-from sqlalchemy.exc import IntegrityError
-from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import asc
+from flask import render_template, redirect, url_for, request, Blueprint
+# from flask_login import login_user, login_required, logout_user, current_user
+# from main import app, login_manager
+# from forms import LoginForm, SignupForm
+from models import Product, db
+# from sqlalchemy.exc import IntegrityError
+# from werkzeug.security import generate_password_hash, check_password_hash
+# from sqlalchemy import asc
+from flask_login import LoginManager
 
 productsTemplate = 'products.html'
 
+stock_view = Blueprint("stock_view", __name__)
 
-@app.route('/products', methods=['GET','POST'])
+
+
+@stock_view.route('/products', methods=['GET','POST'])
 def products():
     return render_template(productsTemplate)
 
@@ -21,7 +25,7 @@ def products():
 #
 #     return render_template(productsTemplate)
 
-@app.route('/stock', methods=['GET','POST'])
+@stock_view.route('/stock', methods=['GET','POST'])
 def stock():
     searched_products = []
     query = request.args.get('query')

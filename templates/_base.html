@@ -17,17 +17,17 @@
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item{% if page_id == 'index' %} active {% endif %}">
+        <li class="nav-item{% if page_id == 'stock_manager.index' %} active {% endif %}">
           <a class="nav-link" href="{{ url_for('index') }}">Home</a>
         </li>
         <li class="nav-item{% if page_id == 'info' %} active {% endif %}">
           <a class="nav-link" href="{{ url_for('info') }}">Info</a>
         </li>
         <li class="nav-item{% if page_id == 'register' %} active {% endif %}">
-          <a class="nav-link" href="{{ url_for('register') }}">Registration</a>
+          <a class="nav-link" href="{{ url_for('stock_manager.register') }}">Registration</a>
         </li>
         <li class="nav-item{% if page_id == 'login' %} active {% endif %}">
-          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          <a class="nav-link" href="{{ url_for('stock_manager.login') }}">Login</a>
         </li>
       </ul>
     </div>
