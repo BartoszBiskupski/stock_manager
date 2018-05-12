@@ -8,6 +8,7 @@ __author__ = 'Jacek Kalbarczyk'
 #from sqlalchemy.types import Boolean
 
 from flask_sqlalchemy import SQLAlchemy
+import flask_whooshalchemy
 
 db = SQLAlchemy()
 
@@ -57,7 +58,8 @@ class Product(db.Model):
     # product_price = db.Column(db.String(100))
 
     __tablename__ = 'products'
-    id = db.Column(db.Integer,autoincrement=True, primary_key=True)
+    __searchable__ = ['id', 'name', 'group']
+    id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     group = db.Column(db.String(30), nullable=False)
     quantity = db.Column(db.Integer, default=0)

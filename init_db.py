@@ -6,19 +6,18 @@ from werkzeug.security import generate_password_hash
 
 
 
-
 app.app_context().push()
 
 db.create_all()
 
-admin = User(
-    active=True,
-    username="admin",
-    password=generate_password_hash('admin', method='sha256'),
-    email='admin@gmail.com',
-    admin=True,
-    # poweruser=True,
-)
+# admin = User(
+#     active=True,
+#     username="admin",
+#     password=generate_password_hash('admin', method='sha256'),
+#     email='admin@gmail.com',
+#     admin=True,
+#     # poweruser=True,
+# )
 #dodanie przykładowych produktów i klientów
 product1 = Product(
     name='Car tire A',
@@ -39,10 +38,12 @@ product3 = Product(
     price=150
 )
 
+
 db.session.add(product1)
 db.session.add(product2)
 db.session.add(product3)
-db.session.add(admin)
+# db.session.add(admin)
+
 
 db.session.commit()
 

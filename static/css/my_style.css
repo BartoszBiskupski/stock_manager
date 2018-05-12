@@ -1,46 +1,46 @@
 body {
-  background-color: WhiteSmoke;
+    background-color: WhiteSmoke;
 }
 
+
 .form-control {
-max-width: 500px;
-  padding: 5px;
+    max-width: 500px;
+    padding: 5px;
 
 }
 
 .text {
-color: WhiteSmoke;
-font-size: large;
+    color: WhiteSmoke;
+    font-size: large;
 }
 
 .container {
-  padding: 20px;
+    padding: 20px;
 
 }
 
-.searchdiv {
-    padding: 50px;
-    display: block;
 
+.container-fluid{
+    box-sizing: border-box;
+    border-style: solid 2px;
 }
 
-.searchbox {
-    padding: 5px 20px 20px;
-    position: relative;
-    border: 2px solid black;
-    align-content: center;
-    display: inline-grid;
-
-}
-.checkboxdiv {
-    padding: 5px;
-    display: inline-block;
-
-}
-.searchinput {
-    padding: 5px
+[class*="col-"] {
+    float: left;
+    padding: 15px;
 }
 
+.col-1  {width: 40;}
+.col-2  {width: 60;}
+
+table, th, td{
+    border: 1px solid black;
+    width: auto;
+
+}
+.table table-hover{
+    ;
+}
 
 .dropbtn {
     color: WhiteSmoke;
@@ -72,7 +72,9 @@ font-size: large;
     display: block;
 }
 
-.dropdown-content a:hover {background-color: #d5d9e0}
+.dropdown-content a:hover {
+    background-color: #d5d9e0
+}
 
 .dropdown:hover .dropdown-content {
     display: block;

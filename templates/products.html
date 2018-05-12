@@ -3,69 +3,59 @@
 {% block title %}Products{%endblock%}
 
 {% block content %}
-<div id="Stock" class="searchdiv">
-      <div class="searchbox">
-          <form action="/stock" method="get">
-            <div class="checkboxdiv">
+<div id="stock" class=""container-fluid"">
+    <div class="header">
+        Maybe something useful will come to mind.
 
-                <label class="checkbox"> All
-                  <input type="radio" checked="checked" name="searchrange" value="all">
-                  <span class="checkmark"></span>
-                </label>
-                <label class="checkbox"> ID
-                  <input type="radio" name="searchrange" value="id">
-                  <span class="checkmark"></span>
-                </label>
-                <label class="checkbox"> Name
-                  <input type="radio" name="searchrange" value="name">
-                  <span class="checkmark"></span>
-                </label>
-                <label class="checkbox"> Group
-                  <input type="radio" name="searchrange" value="group">
-                  <span class="checkmark"></span>
-                </label>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">
 
-            </div>
-            <div class="searchinput">
-                <input type="text" name="query" placeholder="Search">
-                <input type="submit" value="Search">
-            </div>
-          </form>
-      </div>
+        </div>
+        <div class="col-sm-8" id="stock_display">
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="stockcol">#</th>
-          <th scope="stockcol">Name</th>
-          <th scope="stockcol">Group</th>
-          <th scope="stockcol">Quantity</th>
-          <th scope="stockcol">Price</th>
-        </tr>
+            <table class="table table-hover" id="stock_table">
 
-        {% if searched_products %}
-          {% for product in searched_products %}
-            <tr>
-              <th scope="stockcol">{{product.id}}</th>
-              <th scope="stockcol">{{product.name}}</th>
-              <th scope="stockcol">{{product.group}}</th>
-              <th scope="stockcol">{{product.quantity}}</th>
-              <th scope="stockcol">{{product.price}}</th>
-          {% endfor %}
-        {% else %}
-          {% for product in products %}
-            <tr>
-              <th scope="stockcol">{{product.id}}</th>
-              <th scope="stockcol">{{product.name}}</th>
-              <th scope="stockcol">{{product.group}}</th>
-              <th scope="stockcol">{{product.quantity}}</th>
-              <th scope="stockcol">{{product.price}}</th>
-          {% endfor %}
-        {% endif %}
-        </tr>
-      </thead>
-    </table>
+            </table>
+
+        </div>
+        <div class="col-sm-2">
+
+        </div>
+
+
+
+
+    </div>
+
 
 </div>
+
+<script>
+var stock = {{ searched_products|tojson }};
+var columnThead = {{ products_columns|tojson }}
+document.getElementById('stock_table').innerHTML = newTable(stock, columnThead);
+
+
+function newTable(list1, list2) {
+    var tableCreate = '<table>';
+    tableCreate += '<tr>';
+    for (var th in list2.Columns){
+        tableCreate += '<th>' + list2.Columns[th] + '</th>';
+    }
+    tableCreate += '</tr>';
+    for (var x in list1.Products){
+        tableCreate += '<tr>';
+        for (var y in list1.Products[x].columns){
+            tableCreate += '<td>' + list1.Products[x].columns[y] + '</td>';
+        }
+        tableCreate += '</tr>';
+
+    }
+    tableCreate += '</table>';
+    return tableCreate;
+}
+
+</script>
 
 {% endblock %}
