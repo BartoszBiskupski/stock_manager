@@ -65,6 +65,14 @@ def stock():
 
     return render_template(productsTemplate, searched_products=searched_products, products_columns=products_columns)
 
-@stock_view.route('/stock/add', methods=["GET", "POST"])
+@stock_view.route('/stock/add', methods=["POST"])
 def add_stock():
-    pass
+    new_product = Product(
+        name=request.form.get("product_name"),
+        group=request.form.get("product_group"),
+        quantity=request.form.get("product_quantity"),
+        price=request.form.get("product_price"),
+    )
+    db.session.add(new_product)
+    db.session.commit()
+    return redirect(url_for('stock_view.stock'))

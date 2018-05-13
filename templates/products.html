@@ -9,10 +9,43 @@
 
     </div>
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-1">
 
         </div>
-        <div class="col-sm-8" id="stock_display">
+        <div class="col-sm-1 ">
+            <div class="row">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newModal">
+                      Add Product to stock
+                </button>
+                <div class="modal fade" id="newModal" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="container-fluid">
+                                <div class="modal-header">
+                                    <h4>Add new product</h4>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <form action="/stock/add" method="post">
+                                            Product Name: <input type="text" name="product_name" required>
+                                            Product Group: <input type="text" name="product_group" required>
+                                            Product Quantity: <input type="number" name="product_quantity" required>
+                                            Product Price: <input type="number" name="product_price" required>
+                                            <input class="btn btn-primary" type="submit" value="Submit">
+                                        </form>
+                                    </div>
+                                    <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                another test
+            </div>
+        </div>
+        <div class="col-sm-7" id="stock_display">
 
             <table class="table table-hover" id="stock_table">
 
@@ -22,7 +55,7 @@
         <div class="col-sm-2">
             <form action="/search" method="post">
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-md-auto">
                         <input type="text" class="form-control" placeholder="Search" name="query">
                         <small id="searchHelp" class="form-text text-muted"></small>
                             <div class="row_button">
@@ -42,6 +75,8 @@
 </div>
 
 <script>
+
+
 var stock = {{ searched_products|tojson }};
 var columnThead = {{ products_columns|tojson }}
 document.getElementById('stock_table').innerHTML = newTable(stock, columnThead);
