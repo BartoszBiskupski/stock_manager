@@ -51,8 +51,12 @@ def products():
 
 @stock_view.route('/search', methods=['POST', 'GET'])
 def search():
-    query = request.args.get('search')
-    pass
+    products_columns = columns_tr(Product)
+    if request.method == "POST":
+        query = request.form.get('query')
+        searched_products = search_engine(query=query)
+        return render_template(productsTemplate, searched_products=searched_products, products_columns=products_columns)
+
 
 @stock_view.route('/stock', methods=['GET', 'POST'])
 def stock():
@@ -61,3 +65,6 @@ def stock():
 
     return render_template(productsTemplate, searched_products=searched_products, products_columns=products_columns)
 
+@stock_view.route('/stock/add', methods=["GET", "POST"])
+def add_stock():
+    pass

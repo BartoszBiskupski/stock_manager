@@ -39,7 +39,10 @@ table, th, td{
 
 }
 .table table-hover{
-    ;
+
+}
+.row_button{
+    float: right;
 }
 
 .dropbtn {

@@ -20,7 +20,17 @@
 
         </div>
         <div class="col-sm-2">
-
+            <form action="/search" method="post">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" placeholder="Search" name="query">
+                        <small id="searchHelp" class="form-text text-muted"></small>
+                            <div class="row_button">
+                                <input class="btn btn-primary" type="submit" value="Submit">
+                            </div>
+                    </div>
+                </div>
+            </form>
         </div>
 
 
@@ -35,15 +45,22 @@
 var stock = {{ searched_products|tojson }};
 var columnThead = {{ products_columns|tojson }}
 document.getElementById('stock_table').innerHTML = newTable(stock, columnThead);
+document.getElementById('searchHelp').innerHTML = "Products found: " + searchLen(stock);
 
+function searchLen(list) {
+    var listLen = list.Products.length;
+    return listLen;
+}
 
 function newTable(list1, list2) {
     var tableCreate = '<table>';
     tableCreate += '<tr>';
+    tableCreate += '<thead>';
     for (var th in list2.Columns){
         tableCreate += '<th>' + list2.Columns[th] + '</th>';
     }
     tableCreate += '</tr>';
+    tableCreate += '</thead>';
     for (var x in list1.Products){
         tableCreate += '<tr>';
         for (var y in list1.Products[x].columns){
