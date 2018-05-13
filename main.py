@@ -10,7 +10,7 @@ from models import db, Product
 import flask_whooshalchemy as wh
 
 
-DATABASE_URI = 'postgresql://{user}:{pw}@{url}/{db}'.format(user='postgres',pw='JW88qk28as95',url=HOST,db='stock_manager')
+# DATABASE_URI = 'postgresql://{user}:{pw}@{url}/{db}'.format(user='postgres',pw='JW88qk28as95',url=HOST,db='stock_manager')
 
 
 app = Flask(__name__)
