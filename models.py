@@ -1,16 +1,22 @@
 __author__ = 'Jacek Kalbarczyk'
 
 #from flask_login import UserMixin
-
+from sqlalchemy_utils.types import TSVectorType
 #from sqlalchemy import Column
 #from sqlalchemy.types import Integer
 #from sqlalchemy.types import String
 #from sqlalchemy.types import Boolean
 
-from flask_sqlalchemy import SQLAlchemy
-import flask_whooshalchemy
+from flask_sqlalchemy import SQLAlchemy, BaseQuery
+from sqlalchemy_searchable import make_searchable, SearchQueryMixin
 
 db = SQLAlchemy()
+
+make_searchable(db.metadata)
+
+
+class ProductQuery(BaseQuery, SearchQueryMixin):
+    pass
 
 
 class User(db.Model):
@@ -58,12 +64,14 @@ class Product(db.Model):
     # product_price = db.Column(db.String(100))
 
     __tablename__ = 'products'
+    query_class = ProductQuery
     __searchable__ = ['id', 'name', 'group']
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     group = db.Column(db.String(30), nullable=False)
     quantity = db.Column(db.Integer, default=0)
     price = db.Column(db.Integer, default=0)
+    search_vector = db.Column(TSVectorType('name', 'group',))
 
     # def __repr__(self):
     #     return "Products(id={}, name='{}', group='{}', quantity='{}', price='{}'".format(self.id, self.name, self.group,

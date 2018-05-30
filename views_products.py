@@ -4,13 +4,15 @@ from flask import render_template, redirect, url_for, request, Blueprint
 # from flask_login import login_user, login_required, logout_user, current_user
 # from main import login_manager
 # from forms import LoginForm, SignupForm
-from models import Product, db
+from models import Product, db, ProductQuery
 # from sqlalchemy.exc import IntegrityError
 # from werkzeug.security import generate_password_hash, check_password_hash
 # from sqlalchemy import asc
 from flask_login import LoginManager
 from sqlalchemy.sql import text
-import json
+from sqlalchemy.dialects.postgresql import TSVECTOR
+from sqlalchemy import select, cast
+
 
 
 productsTemplate = 'products.html'
@@ -20,7 +22,7 @@ stock_view = Blueprint("stock_view", __name__)
 def search_engine(query):
     product_list = {"Products":[]}
     if query:
-        search_results = Product.query.whoosh_search(query)
+        search_results = Product.query.search(query)
 
     else:
         search_results = Product.query.order_by(Product.id)

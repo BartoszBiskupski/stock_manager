@@ -3,22 +3,22 @@ __author__ = 'Jacek Kalbarczyk'
 from main import app, db
 from models import User, Product
 from werkzeug.security import generate_password_hash
-
-
+from sqlalchemy.orm.mapper import configure_mappers
 
 app.app_context().push()
-
+db.orm.configure_mappers()
 db.create_all()
 
-# admin = User(
-#     active=True,
-#     username="admin",
-#     password=generate_password_hash('admin', method='sha256'),
-#     email='admin@gmail.com',
-#     admin=True,
-#     # poweruser=True,
-# )
-#dodanie przykładowych produktów i klientów
+admin = User(
+    active=True,
+    username="admin",
+    password=generate_password_hash('admin', method='sha256'),
+    email='admin@gmail.com',
+    admin=True,
+    # poweruser=True,
+)
+# dodanie przykładowych produktów i klientów
+
 product1 = Product(
     name='Car tire A',
     group='Tires',
@@ -42,7 +42,7 @@ product3 = Product(
 db.session.add(product1)
 db.session.add(product2)
 db.session.add(product3)
-# db.session.add(admin)
+db.session.add(admin)
 
 
 db.session.commit()
