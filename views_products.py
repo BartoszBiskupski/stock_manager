@@ -4,7 +4,7 @@ from flask import render_template, redirect, url_for, request, Blueprint
 # from flask_login import login_user, login_required, logout_user, current_user
 # from main import login_manager
 # from forms import LoginForm, SignupForm
-from models import Product, db, ProductQuery
+from models import Product, db
 # from sqlalchemy.exc import IntegrityError
 # from werkzeug.security import generate_password_hash, check_password_hash
 # from sqlalchemy import asc
@@ -12,17 +12,19 @@ from flask_login import LoginManager
 from sqlalchemy.sql import text
 from sqlalchemy.dialects.postgresql import TSVECTOR
 from sqlalchemy import select, cast
+from sqlalchemy_searchable import search
 
 
 
 productsTemplate = 'products.html'
-
 stock_view = Blueprint("stock_view", __name__)
+
 
 def search_engine(query):
     product_list = {"Products":[]}
     if query:
-        search_results = Product.query.search(query)
+        search_results = Product.query.order_by(Product.id)
+        search_results = search(search_results, query)
 
     else:
         search_results = Product.query.order_by(Product.id)
@@ -55,8 +57,7 @@ def products():
 def search():
     products_columns = columns_tr(Product)
     if request.method == "POST":
-        query = request.form.get('query')
-        searched_products = search_engine(query=query)
+        searched_products = search_engine(query=request.form.get('query'))
         return render_template(productsTemplate, searched_products=searched_products, products_columns=products_columns)
 
 

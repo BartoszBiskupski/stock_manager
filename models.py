@@ -12,8 +12,7 @@ from sqlalchemy_searchable import make_searchable, SearchQueryMixin
 
 db = SQLAlchemy()
 
-make_searchable(db.metadata)
-
+make_searchable()
 
 class ProductQuery(BaseQuery, SearchQueryMixin):
     pass
@@ -64,8 +63,8 @@ class Product(db.Model):
     # product_price = db.Column(db.String(100))
 
     __tablename__ = 'products'
-    query_class = ProductQuery
     __searchable__ = ['id', 'name', 'group']
+    query_class = ProductQuery
     id = db.Column(db.Integer, autoincrement=True, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     group = db.Column(db.String(30), nullable=False)

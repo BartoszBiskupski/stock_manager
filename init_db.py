@@ -4,10 +4,8 @@ from main import app, db
 from models import User, Product
 from werkzeug.security import generate_password_hash
 from sqlalchemy.orm.mapper import configure_mappers
+import sqlalchemy as sa
 
-app.app_context().push()
-db.orm.configure_mappers()
-db.create_all()
 
 admin = User(
     active=True,
@@ -17,8 +15,9 @@ admin = User(
     admin=True,
     # poweruser=True,
 )
-# dodanie przykładowych produktów i klientów
 
+
+# dodanie przykładowych produktów i klientów
 product1 = Product(
     name='Car tire A',
     group='Tires',
@@ -38,7 +37,10 @@ product3 = Product(
     price=150
 )
 
+sa.orm.configure_mappers()
+app.app_context().push()
 
+db.create_all()
 db.session.add(product1)
 db.session.add(product2)
 db.session.add(product3)

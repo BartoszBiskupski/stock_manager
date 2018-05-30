@@ -2,3 +2,4 @@
 /venv
 sqldemo.db
 app_test.py
+/whoosh
