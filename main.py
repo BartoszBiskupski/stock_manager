@@ -13,7 +13,7 @@ DATABASE_URI = 'postgresql://{user}:{pw}@{url}/{db}'.format(
     user='postgres',
     pw='JW88qk28as95',
     url=HOST,
-    db='stock_manager'
+    db='test'
 )
 
 

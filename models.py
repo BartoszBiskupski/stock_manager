@@ -12,7 +12,8 @@ from sqlalchemy_searchable import make_searchable, SearchQueryMixin
 
 db = SQLAlchemy()
 
-make_searchable()
+make_searchable(db.metadata)
+
 
 class ProductQuery(BaseQuery, SearchQueryMixin):
     pass
